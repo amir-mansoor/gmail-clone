@@ -14,7 +14,7 @@ const Header = () => {
         </Link>
 
         <SignedIn>
-          <div className="flex items-center ml-[160px] w-[500px] backdrop-brightness-105 border border-gray-700 py-3 rounded-full px-2">
+          <div className="flex items-center ml-[110px] w-[1000px] backdrop-brightness-105 border border-gray-700 py-3 rounded-full px-2">
             <Search />
             <input
               className="w-full ml-2 outline-none  bg-transparent"

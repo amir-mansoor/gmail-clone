@@ -13,6 +13,8 @@ import {
 import HomeScreen from "./screens/HomeScreen.jsx";
 import LoginScreen from "./screens/LoginScreen.jsx";
 import RegisterScreen from "./screens/RegisterScreen.jsx";
+import { Provider } from "react-redux";
+import store from "./store.js";
 
 // You can do this:
 const router = createBrowserRouter(
@@ -33,14 +35,16 @@ if (!PUBLISHABLE_KEY) {
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ClerkProvider
-      appearance={{
-        baseTheme: dark,
-      }}
-      publishableKey={PUBLISHABLE_KEY}
-      afterSignOutUrl="/"
-    >
-      <RouterProvider router={router} />
-    </ClerkProvider>
+    <Provider store={store}>
+      <ClerkProvider
+        appearance={{
+          baseTheme: dark,
+        }}
+        publishableKey={PUBLISHABLE_KEY}
+        afterSignOutUrl="/"
+      >
+        <RouterProvider router={router} />
+      </ClerkProvider>
+    </Provider>
   </StrictMode>
 );

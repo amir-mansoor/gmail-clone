@@ -2,6 +2,7 @@ import { SignedIn, SignedOut } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import MailBox from "../components/MailBox";
+import SendMail from "../components/SendMail";
 
 const HomeScreen = () => {
   return (
