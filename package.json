@@ -2,13 +2,16 @@
   "name": "gmail-clone",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "cd frontend && npm run dev"
+    "start": "cd frontend && npm run dev",
+    "server":"nodemon backend/server.js"
   },
   "author": "Amir Mansoor",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^5.0.60",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",

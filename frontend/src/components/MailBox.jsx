@@ -1,10 +1,12 @@
 import { MoreVertical, RotateCw } from "lucide-react";
 import { useState } from "react";
 import Inbox from "./Inbox";
+import { useLocation } from "react-router-dom";
 
 const MailBox = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { pathname } = useLocation();
+  console.log(pathname);
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };

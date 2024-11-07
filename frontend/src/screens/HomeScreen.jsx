@@ -1,10 +1,43 @@
-import { SignedIn, SignedOut } from "@clerk/clerk-react";
+import { SignedIn, SignedOut, useAuth, useUser } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import MailBox from "../components/MailBox";
-import SendMail from "../components/SendMail";
+import { useEffect } from "react";
+import { BASE_URL } from "../constants";
 
 const HomeScreen = () => {
+  const { user, isSignedIn } = useUser();
+  const { getToken } = useAuth();
+
+  useEffect(() => {
+    if (isSignedIn) {
+      const sendUserDataToBackend = async () => {
+        try {
+          const sessionToken = await getToken();
+          const response = await fetch(`${BASE_URL}/users/add-user`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${sessionToken}`, // Pass token for secure verification
+            },
+            body: JSON.stringify({
+              id: user.id,
+              email: user.primaryEmailAddress?.emailAddress,
+              name: user.fullName,
+              avatarUrl: user.avatarUrl,
+            }),
+          });
+
+          const data = await response.json();
+          console.log(data.message);
+        } catch (err) {
+          console.log("error sending data to backend", err);
+        }
+      };
+
+      sendUserDataToBackend();
+    }
+  }, [user, isSignedIn, getToken]);
   return (
     <div>
       {/* Show showcase if user is signout else show chatbox and sidebar */}
